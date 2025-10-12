@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickClips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-image-crop@11.0.5/dist/ReactCrop.css" />
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['IBM Plex Sans', 'sans-serif'],
+            },
+            colors: {
+              'brand-blue': '#4a80ff',
+              'brand-blue-light': '#8ab4f8',
+              'brand-primary': '#4a80ff',
+              'brand-secondary': '#8ab4f8',
+              'dark-bg': '#040715',
+              'dark-card': 'rgba(29, 31, 49, 0.5)',
+              'light-bg': '#f8f9fa',
+              'light-card': '#ffffff',
+              'light-border': '#e0e0e0',
+              'dark-border': '#374151',
+              'text-heading-light': '#1f2937',
+              'text-heading-dark': '#f9fafb',
+              'text-body-light': '#4b5563',
+              'text-body-dark': '#d1d5db',
+              'text-muted-light': '#6b7280',
+              'text-muted-dark': '#9ca3af',
+            },
+            backgroundImage: {
+              'brand-gradient': 'linear-gradient(-45deg, #4a80ff, #8ab4f8, #a353d5, #4a80ff)',
+            },
+            backgroundSize: {
+              '200%': '200% 200%',
+            },
+            animation: {
+              'background-pan': 'background-pan 15s linear infinite',
+              'fade-in': 'fade-in 0.3s ease-out forwards',
+              'fill-pill': 'fill-pill 5s linear forwards',
+              'gradient-shift': 'gradient-shift 4s ease infinite',
+              'pulse-border': 'pulse-border 3s ease-in-out infinite',
+            },
+            keyframes: {
+              'background-pan': {
+                '0%': { 'background-position': '0% 50%' },
+                '100%': { 'background-position': '200% 50%' },
+              },
+              'fade-in': {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              'fill-pill': {
+                'from': { width: '0%' },
+                'to': { width: '100%' },
+              },
+              'gradient-shift': {
+                '0%, 100%': { backgroundPosition: '0% 50%' },
+                '50%': { backgroundPosition: '100% 50%' },
+              },
+              'pulse-border': {
+                 '0%, 100%': { 'border-color': 'rgba(138, 180, 248, 0.3)' },
+                 '50%': { 'border-color': 'rgba(74, 128, 255, 0.8)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.24.0",
+    "react-image-crop": "https://aistudiocdn.com/react-image-crop@^11.0.5",
+    "react-image-crop/": "https://aistudiocdn.com/react-image-crop@^11.0.5/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

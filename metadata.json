@@ -1,0 +1,5 @@
+{
+  "name": "QuickClips: AI Document Automation",
+  "description": "A landing page for QuickClips, an application that uses AI to extract text from images and automate document creation, inspired by the Google DeepMind Gemini UI.",
+  "requestFramePermissions": []
+}
