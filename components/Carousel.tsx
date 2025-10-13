@@ -78,7 +78,7 @@ const Carousel: React.FC = () => {
               onClick={() => setActiveIndex(index)}
               className={`rounded-full transition-all duration-500 ease-in-out ${
                 activeIndex === index
-                  ? 'w-9 h-3 bg-gray-200 dark:bg-gray-700 relative overflow-hidden border border-gray-500 dark:border-gray-400'
+                  ? 'w-9 h-3 bg-transparent relative overflow-hidden border border-gray-500 dark:border-gray-400'
                   : 'w-3 h-3 bg-transparent border border-gray-500 dark:border-gray-400'
               }`}
               aria-label={`Go to slide ${index + 1}`}
@@ -86,7 +86,7 @@ const Carousel: React.FC = () => {
               {activeIndex === index && (
                 <span
                   key={activeIndex}
-                  className="absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-brand-blue to-brand-blue-light animate-fill-pill"
+                  className="absolute inset-px rounded-full bg-gradient-to-r from-brand-blue to-brand-blue-light animate-fill-pill"
                 ></span>
               )}
             </button>

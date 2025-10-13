@@ -38,7 +38,7 @@ export const ClipboardPasteArea: React.FC<ClipboardPasteAreaProps> = ({ onUpload
                         onClick={onUploadClick}
                         type="button"
                         aria-label="Upload an image file"
-                        className="font-bold py-3 px-8 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-bg dark:focus:ring-offset-dark-bg focus:ring-brand-primary rounded-full text-white bg-brand-gradient bg-200% hover:shadow-lg hover:shadow-brand-secondary/40 hover:scale-105 animate-gradient-shift"
+                        className="font-bold py-3 px-8 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-bg dark:focus:ring-offset-dark-bg focus:ring-brand-primary rounded-full text-white bg-brand-gradient bg-200% hover:shadow-lg hover:shadow-brand-secondary/40 hover:-translate-y-0.5 animate-gradient-shift"
                     >
                         Upload an Image
                     </button>

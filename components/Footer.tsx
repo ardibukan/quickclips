@@ -7,7 +7,7 @@ import {
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-100 dark:bg-dark-bg text-gray-800 dark:text-white py-16 px-6">
+    <footer className="bg-gray-100 dark:bg-dark-bg text-gray-800 dark:text-white pt-16 pb-10 px-6">
       <div className="container mx-auto">
         <div className="mb-12">
             <h3 className="text-lg mb-6">Follow us</h3>
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
             </div>
              <div>
                 <h4 className="font-medium text-2xl mb-4">Learn more</h4>
-                <ul className="space-y-5 mt-16">
+                <ul className="space-y-5 mt-10">
                     <FooterLink text="About" />
                     <FooterLink text="News" />
                     <FooterLink text="Careers" />
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
             </div>
         </div>
 
-        <div className="mt-20 border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xl">
+        <div className="mt-20 border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-md sm:text-xl">
             <p className="mb-4 md:mb-0">© 2025 QuickClips Inc.</p>
             <div className="flex flex-col sm:flex-row sm:space-x-8 text-center space-y-2 sm:space-y-0">
                 <a href="#" className="hover:text-gray-900 dark:hover:text-gray-300 transition-colors">Privacy Policy</a>
