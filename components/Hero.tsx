@@ -21,14 +21,14 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <button 
             onClick={() => navigate('extractor')}
-            className="bg-brand-blue text-white font-semibold py-4 px-6 rounded-full flex items-center justify-center space-x-2 text-lg transition-colors w-72 border-2 border-transparent hover:border-white/80"
+            className="bg-brand-blue text-white font-semibold py-3 px-2 rounded-full flex items-center justify-center space-x-2 text-lg transition-colors w-64 border-2 border-transparent hover:border-white/80"
           >
             <span>Try for Free</span>
             <ArrowRightIcon className="w-5 h-5" />
           </button>
           <button 
             onClick={() => navigate('resources')}
-            className="bg-black text-white font-semibold py-4 px-6 rounded-full flex items-center justify-center space-x-2 text-lg transition-colors w-72 border-2 border-gray-700 hover:border-gray-400">
+            className="bg-black text-white font-semibold py-3 px-2 rounded-full flex items-center justify-center space-x-2 text-lg transition-colors w-64 border-2 border-gray-700 hover:border-gray-400">
             <span>Build with QuickClips</span>
             <ArrowRightIcon className="w-5 h-5" />
           </button>

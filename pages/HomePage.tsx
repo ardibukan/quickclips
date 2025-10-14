@@ -14,9 +14,9 @@ const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
   return (
     <main>
       <Hero navigate={navigate} />
-      <Carousel />
-      <FeatureSection />
       <VideoCarousel />
+      <FeatureSection />
+      <Carousel />
       <TestimonialCarousel />
       <div className="text-center py-20 px-6">
         <h2 className="text-4xl md:text-6xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-blue-400 to-purple-400 mb-6 !leading-snug">Start Automating Today</h2>

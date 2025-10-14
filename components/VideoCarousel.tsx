@@ -42,7 +42,10 @@ const VideoCarousel: React.FC = () => {
         <section className="py-20">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-6xl font-medium tracking-tight">See QuickClips in Action</h2>
+                    <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">See QuickClips in Action</h2>
+                    <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 dark:text-gray-400">
+                        See how QuickClips creates a simulation of intricate fractal patterns to explore a Mandelbrot set.
+                    </p>
                 </div>
                 <div className="max-w-lg mx-auto overflow-hidden relative py-6">
                     <div
