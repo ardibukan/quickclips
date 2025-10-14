@@ -67,7 +67,7 @@ const PricingPage: React.FC = () => {
           <table className="w-full min-w-[640px] divide-y divide-gray-200 dark:divide-gray-800">
             <thead className="bg-gray-50 dark:bg-zinc-900">
               <tr>
-                <th scope="col" className="sticky left-0 bg-gray-50 dark:bg-zinc-900 z-10 px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white w-1/3 md:w-1/4">
+                <th scope="col" className="sticky left-0 bg-gray-50 dark:bg-zinc-900 z-10 px-4 py-3 text-left text-xs font-semibold text-gray-900 dark:text-white w-1/4 md:w-1/4">
                   Features
                 </th>
                 <th scope="col" className="px-4 py-3 text-center text-xs font-semibold text-gray-900 dark:text-white">Free</th>
