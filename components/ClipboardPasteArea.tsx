@@ -9,7 +9,19 @@ interface ClipboardPasteAreaProps {
 export const ClipboardPasteArea: React.FC<ClipboardPasteAreaProps> = ({ onUploadClick, isDragging }) => {
   return (
     <div className="mt-8 flex justify-center items-center w-full">
-        <div className={`w-full max-w-3xl p-1 rounded-2xl bg-gradient-to-br from-light-border to-gray-200 dark:from-dark-border dark:to-gray-800 transition-all duration-300 ${isDragging ? 'scale-105 bg-brand-gradient animate-gradient-shift bg-200%' : 'animate-pulse-border'}`}>
+        <div
+            className={`
+            w-full max-w-3xl p-1 rounded-2xl
+            bg-gradient-to-br from-light-border to-gray-200
+            dark:from-dark-border dark:to-gray-800
+            transition-all duration-300
+            ${
+                isDragging
+                ? 'scale-105 md:bg-brand-gradient md:animate-gradient-shift md:bg-200%'
+                : 'md:animate-pulse-border'
+            }
+            `}
+        >
           <div className={`w-full h-full flex flex-col justify-center items-center bg-light-bg dark:bg-dark-bg/80 backdrop-blur-sm rounded-xl text-center p-8`}>
             {isDragging ? (
                  <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-brand-primary animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -38,8 +50,15 @@ export const ClipboardPasteArea: React.FC<ClipboardPasteAreaProps> = ({ onUpload
                         onClick={onUploadClick}
                         type="button"
                         aria-label="Upload an image file"
-                        className="font-bold py-3 px-8 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-bg dark:focus:ring-offset-dark-bg focus:ring-brand-primary rounded-full text-white bg-brand-gradient bg-200% hover:shadow-lg hover:shadow-brand-secondary/40 hover:-translate-y-0.5 animate-gradient-shift"
-                    >
+                        className="
+                            font-bold py-3 px-8 rounded-full text-black
+                            bg-brand-gradient bg-200%
+                            transition-transform duration-300
+                            hover:-translate-y-0.5
+                            md:animate-gradient-shift
+                            md:hover:shadow-lg md:hover:shadow-brand-secondary/40
+                        "
+                        >                        
                         Upload an Image
                     </button>
                 </>

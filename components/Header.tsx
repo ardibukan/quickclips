@@ -194,7 +194,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, navigate }) => {
                <button onClick={() => setIsMenuOpen(true)} className={`md:hidden ${iconButtonClasses}`} aria-label="Open menu">
                 <MenuIcon className="w-6 h-6" />
               </button>
-              <div onClick={() => navigate('home')} className="flex items-center space-x-3 cursor-pointer">
+              <div onClick={() => navigate('home')} className="hidden md:flex items-center space-x-3 cursor-pointer">
                 <LogoIcon className="w-8 h-8 text-brand-blue" />
                 <span className="text-2xl font-bold tracking-tighter">QuickClips</span>
               </div>
