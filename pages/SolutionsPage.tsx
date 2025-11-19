@@ -12,19 +12,19 @@ const SolutionsPage: React.FC = () => {
         </p>
       </div>
       <div className="mt-16 space-y-8 max-w-4xl mx-auto">
-        <div className="bg-light-card dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
+        <div className="bg-light-card/40 dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
             <h3 className="text-2xl font-semibold mb-2">For Finance Teams</h3>
             <p className="text-gray-600 dark:text-gray-400">Automate invoice processing, expense reporting, and receipt digitization to streamline your financial workflows and reduce manual errors.</p>
         </div>
-        <div className="bg-light-card dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
+        <div className="bg-light-card/40 dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
             <h3 className="text-2xl font-semibold mb-2">For Legal Professionals</h3>
             <p className="text-gray-600 dark:text-gray-400">Quickly digitize and search through legal documents, contracts, and case files with unparalleled accuracy, saving hours on discovery and review.</p>
         </div>
-        <div className="bg-light-card dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
+        <div className="bg-light-card/40 dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
             <h3 className="text-2xl font-semibold mb-2">For Healthcare Providers</h3>
             <p className="text-gray-600 dark:text-gray-400">Convert patient records, lab results, and prescriptions into structured digital data securely and efficiently, ensuring HIPAA compliance.</p>
         </div>
-         <div className="bg-light-card dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
+         <div className="bg-light-card/40 dark:bg-dark-card border border-gray-200 dark:border-gray-800 rounded-2xl p-8 shadow-lg dark:shadow-brand-blue/10">
             <h3 className="text-2xl font-semibold mb-2">For Logistics & Supply Chain</h3>
             <p className="text-gray-600 dark:text-gray-400">Automate the processing of bills of lading, shipping labels, and customs forms to accelerate your entire supply chain.</p>
         </div>

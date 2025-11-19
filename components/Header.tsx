@@ -91,8 +91,8 @@ interface MobileMenuProps {
 const NavItem: React.FC<{ children: React.ReactNode; onClick: () => void; }> = ({ children, onClick }) => (
     <button onClick={onClick} className="w-full flex items-center justify-between text-left group">
         <span className="text-2xl font-light group-hover:text-brand-blue-light transition-colors">{children}</span>
-        <div className="bg-gray-800/80 p-3 rounded-full group-hover:bg-gray-700 transition-colors">
-            <ChevronDownIcon className="w-5 h-5 text-gray-400" />
+        <div className="p-3 rounded-full bg-gray-200 group-hover:bg-gray-300 dark:bg-gray-800/80 dark:group-hover:bg-gray-700 transition-colors">
+            <ChevronDownIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
         </div>
     </button>
 );
@@ -100,7 +100,7 @@ const NavItem: React.FC<{ children: React.ReactNode; onClick: () => void; }> = (
 const ActionItem: React.FC<{ icon: React.ReactNode; children: React.ReactNode; onClick?: () => void; }> = ({ icon, children, onClick }) => (
   <button onClick={onClick} className="w-full flex items-center justify-between text-left group cursor-pointer">
     <span className="text-2xl font-light group-hover:text-brand-blue-light transition-colors">{children}</span>
-    <div className="bg-gray-800/80 p-3 rounded-full group-hover:bg-gray-700 transition-colors">
+    <div className="p-3 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-800/80 dark:hover:bg-gray-700 transition-colors">
       {icon}
     </div>
   </button>
@@ -113,16 +113,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, onSearchClick, navigat
   }
 
   return (
-    <div className="fixed inset-0 bg-black text-white z-50 p-4 flex flex-col animate-fade-in">
+    <div className="fixed inset-0 bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-white z-50 p-4 flex flex-col animate-fade-in">
       <div className="flex items-center justify-between mb-10 px-2">
-        <button onClick={onClose} className="bg-gray-800/80 p-2 rounded-full hover:bg-gray-700 transition-colors" aria-label="Close menu">
-          <CloseIcon className="w-6 h-6" />
+        <button
+          onClick={onClose}
+          className="p-2 rounded-full 
+            bg-gray-200 hover:bg-gray-300 
+            dark:bg-gray-800/80 dark:hover:bg-gray-700 
+            transition-colors"
+        >
+          <CloseIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
+
         <div onClick={() => handleNavigate('home')} className="flex items-center space-x-2 cursor-pointer">
           <span className="text-lg font-medium">QuickClips</span>
         </div>
-        <button onClick={onSearchClick} className="bg-gray-800/80 p-3 rounded-full hover:bg-gray-700 transition-colors" aria-label="Search">
-          <SearchIcon className="w-5 h-5 text-gray-400" />
+        <button onClick={onSearchClick} className="p-3 rounded-full bg-gray-200 hover:bg-gray-300
+             dark:bg-gray-800/80 dark:hover:bg-gray-700 transition-colors" aria-label="Search">
+          <SearchIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
         </button>
       </div>
       <nav className="flex-grow flex flex-col space-y-6 px-2">
@@ -131,8 +139,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, onSearchClick, navigat
         <NavItem onClick={() => handleNavigate('pricing')}>Pricing</NavItem>
         <NavItem onClick={() => handleNavigate('resources')}>Resources</NavItem>
         <hr className="border-gray-800 my-4" />
-        <ActionItem icon={<ExternalLinkIcon className="w-6 h-6 text-gray-400" />}>Build with QuickClips</ActionItem>
-        <ActionItem icon={<SparkleIcon className="w-6 h-6 text-gray-400" />} onClick={() => handleNavigate('extractor')}>Launch App</ActionItem>
+        <ActionItem icon={<ExternalLinkIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />}>Build with QuickClips</ActionItem>
+        <ActionItem icon={<SparkleIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />} onClick={() => handleNavigate('extractor')}>Launch App</ActionItem>
       </nav>
     </div>
   );
