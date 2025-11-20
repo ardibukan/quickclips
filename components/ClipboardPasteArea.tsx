@@ -51,7 +51,8 @@ export const ClipboardPasteArea: React.FC<ClipboardPasteAreaProps> = ({ onUpload
                         type="button"
                         aria-label="Upload an image file"
                         className="
-                            font-bold py-3 px-8 rounded-full text-black
+                            font-semibold py-3 px-8 rounded-full
+                            text-white dark:text-black
                             bg-brand-gradient bg-200%
                             transition-transform duration-300
                             hover:-translate-y-0.5

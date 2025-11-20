@@ -12,6 +12,7 @@
     "@google/genai": "^1.24.0",
     "jspdf": "^2.5.1",
     "lucide-react": "^0.554.0",
+    "qrcode": "^1.5.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-image-crop": "^11.0.5"

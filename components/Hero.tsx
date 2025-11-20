@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ navigate }) => {
       className="relative min-h-screen flex items-center bg-light-bg dark:bg-[url('https://lh3.googleusercontent.com/SpF9hIf_C3KSo-xElVbNF768qUJtb4TNoXTczjyxdH9BSUNnNaedlC7QYq6d9C8YGVnEfSjDdvC3hR4p81UijHFgLoqWqqRPQ70lpnJB50OAAot0iw=w1440')] bg-cover bg-center bg-no-repeat"
       >
       <div className="container mx-auto px-6 text-center">
-        <h1 className="text-6xl md:text-8xl font-medium tracking-tighter mb-6">
+        <h1 className="text-6xl md:text-8xl font-medium tracking-tighter mb-6 animate-gradient-shift bg-clip-text text-transparent bg-brand-gradient bg-200% !leading-snug transition-all duration-300">
           QuickClips
         </h1>
         <p className="max-w-3xl mx-auto text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12">

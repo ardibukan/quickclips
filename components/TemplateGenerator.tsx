@@ -464,7 +464,8 @@ export const TemplateGenerator: React.FC = () => {
                 </div>
 
                 <div>
-                    <button onClick={handleGenerate} disabled={!imageData || !selectedTemplate || isLoading} className="w-full font-bold py-4 px-8 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-bg dark:focus:ring-offset-dark-bg focus:ring-brand-primary rounded-full text-white bg-brand-gradient bg-200% hover:shadow-lg hover:shadow-brand-secondary/40 hover:scale-105 animate-gradient-shift disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:scale-100">
+                    <button onClick={handleGenerate} disabled={!imageData || !selectedTemplate || isLoading} className="w-full font-bold py-4 px-8 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-light-bg dark:focus:ring-offset-dark-bg focus:ring-brand-primary rounded-full text-white dark:text-black bg-brand-gradient bg-200% 
+                    md:hover:shadow-lg md:hover:shadow-brand-secondary/40 hover:scale-105 md:animate-gradient-shift disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none disabled:scale-100">
                         {isLoading ? (<span className="capitalize">{loadingStep}...</span>) : (<span className="flex items-center justify-center gap-2"><SparkleIcon className="w-5 h-5"/> Generate Document</span>)}
                     </button>
                 </div>

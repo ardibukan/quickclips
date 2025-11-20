@@ -80,8 +80,13 @@ const PricingPage: React.FC = () => {
               {pricingDetails.map((item, index) => 
                 item.isHeader ? (
                   <tr key={`header-${index}`}>
-                    <td colSpan={5} className="bg-gray-100 dark:bg-black/50 px-4 py-3">
+                    <td 
+                        className="sticky left-0 z-20 bg-gray-100 dark:bg-black/50 px-4 py-3 text-left w-1/4 md:w-1/4"
+                    >
                       <h3 className="text-base font-semibold text-gray-900 dark:text-white">{item.section}</h3>
+                    </td>
+                    
+                    <td colSpan={4} className="bg-gray-100 dark:bg-black/50">
                     </td>
                   </tr>
                 ) : (

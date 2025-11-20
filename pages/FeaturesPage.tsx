@@ -173,13 +173,14 @@ const FeaturesPage: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="flex justify-center items-center my-12">
-                    <div className="flex items-center space-x-2 bg-gray-200 dark:bg-gray-800 p-1.5 rounded-full">
+                <div className="my-12">
+                 <div className="px-6 flex justify-center">
+                  <div className="overflow-x-auto no-scrollbar flex items-center space-x-2 bg-gray-200 dark:bg-gray-800 p-1.5 rounded-full w-max">
                         {tabs.map(tab => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`px-5 py-2 rounded-full font-semibold transition-colors text-sm md:text-base ${
+                                className={`px-5 py-2 rounded-full font-semibold transition-colors text-sm md:text-base whitespace-nowrap ${
                                     activeTab === tab 
                                         ? 'bg-brand-blue text-white' 
                                         : 'text-gray-600 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700'
@@ -188,7 +189,8 @@ const FeaturesPage: React.FC = () => {
                                 {tab}
                             </button>
                         ))}
-                    </div>
+                   </div>
+                 </div>
                 </div>
 
                 <div className="flex flex-col items-center">

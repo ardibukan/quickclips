@@ -7,8 +7,9 @@ import FeaturesPage from './pages/FeaturesPage';
 import SolutionsPage from './pages/SolutionsPage';
 import PricingPage from './pages/PricingPage';
 import ResourcesPage from './pages/ResourcesPage';
+import QrGeneratorPage from './pages/QrGeneratorPage';
 
-export type Page = 'home' | 'extractor' | 'features' | 'solutions' | 'pricing' | 'resources';
+export type Page = 'home' | 'extractor' | 'features' | 'solutions' | 'pricing' | 'resources' | 'qr-generator';
 
 const App: React.FC = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
@@ -45,6 +46,8 @@ const App: React.FC = () => {
         return <PricingPage />;
       case 'resources':
         return <ResourcesPage />;
+      case 'qr-generator':
+        return <QrGeneratorPage />;
       default:
         return <HomePage navigate={navigate} />;
     }

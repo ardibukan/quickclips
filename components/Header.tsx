@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { MenuIcon, SearchIcon, ChevronDownIcon, SunIcon, MoonIcon, CloseIcon, SparkleIcon, ExternalLinkIcon, LogoIcon } from './Icons';
+import { MenuIcon, SearchIcon, ChevronDownIcon, SunIcon, MoonIcon, CloseIcon, SparkleIcon, ExternalLinkIcon, LogoIcon, ClipboardIcon, InvoiceIcon, QrCodeIcon } from './Icons';
 import { Page } from '../App';
 
 interface SearchModalProps {
@@ -88,64 +89,133 @@ interface MobileMenuProps {
   navigate: (page: Page) => void;
 }
 
-const NavItem: React.FC<{ children: React.ReactNode; onClick: () => void; }> = ({ children, onClick }) => (
-    <button onClick={onClick} className="w-full flex items-center justify-between text-left group">
-        <span className="text-2xl font-light group-hover:text-brand-blue-light transition-colors">{children}</span>
-        <div className="p-3 rounded-full bg-gray-200 group-hover:bg-gray-300 dark:bg-gray-800/80 dark:group-hover:bg-gray-700 transition-colors">
-            <ChevronDownIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+interface MobileNavItemProps {
+    label: string;
+    children?: React.ReactNode;
+    onClick?: () => void; // For direct links without submenu
+    isOpen?: boolean;
+    onToggle?: () => void;
+}
+
+const MobileNavItem: React.FC<MobileNavItemProps> = ({ label, children, onClick, isOpen, onToggle }) => {
+    const hasSubmenu = !!children;
+    
+    return (
+        <div className="w-full">
+            <button 
+                onClick={hasSubmenu ? onToggle : onClick} 
+                className="w-full flex items-center justify-between text-left group py-2"
+            >
+                <span className={`text-2xl font-light transition-colors ${isOpen ? 'text-brand-blue' : 'text-gray-800 dark:text-gray-100 group-hover:text-brand-blue-light'}`}>
+                    {label}
+                </span>
+                {hasSubmenu && (
+                    <div className={`p-3 rounded-full transition-all duration-300 ${isOpen ? 'bg-brand-blue/10 rotate-180' : 'bg-gray-100 dark:bg-gray-800/80 group-hover:bg-gray-200 dark:group-hover:bg-gray-700'}`}>
+                        <ChevronDownIcon className={`w-5 h-5 transition-colors ${isOpen ? 'text-brand-blue' : 'text-gray-600 dark:text-gray-400'}`} />
+                    </div>
+                )}
+            </button>
+            {hasSubmenu && (
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
+                     <div className="pl-4 space-y-3 py-2 border-l-2 border-gray-200 dark:border-gray-800 ml-1">
+                        {children}
+                     </div>
+                </div>
+            )}
         </div>
+    );
+};
+
+const MobileSubItem: React.FC<{ onClick: () => void; children: React.ReactNode; icon?: React.ReactNode }> = ({ onClick, children, icon }) => (
+    <button onClick={onClick} className="flex items-center space-x-3 text-lg text-gray-600 dark:text-gray-300 hover:text-brand-blue dark:hover:text-brand-blue transition-colors w-full text-left py-1">
+        {icon && <span className="opacity-70">{icon}</span>}
+        <span>{children}</span>
     </button>
 );
 
 const ActionItem: React.FC<{ icon: React.ReactNode; children: React.ReactNode; onClick?: () => void; }> = ({ icon, children, onClick }) => (
-  <button onClick={onClick} className="w-full flex items-center justify-between text-left group cursor-pointer">
-    <span className="text-2xl font-light group-hover:text-brand-blue-light transition-colors">{children}</span>
-    <div className="p-3 rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-800/80 dark:hover:bg-gray-700 transition-colors">
+  <button onClick={onClick} className="w-full flex items-center justify-between text-left group cursor-pointer py-2">
+    <span className="text-xl font-light text-gray-800 dark:text-gray-100 group-hover:text-brand-blue-light transition-colors">{children}</span>
+    <div className="bg-gray-100 dark:bg-gray-800/80 p-3 rounded-full group-hover:bg-gray-200 dark:group-hover:bg-gray-700 transition-colors">
       {icon}
     </div>
   </button>
 );
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, onSearchClick, navigate }) => {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
+  const toggle = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
   const handleNavigate = (page: Page) => {
     navigate(page);
     onClose();
   }
 
   return (
-    <div className="fixed inset-0 bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-white z-50 p-4 flex flex-col animate-fade-in">
-      <div className="flex items-center justify-between mb-10 px-2">
-        <button
-          onClick={onClose}
-          className="p-2 rounded-full 
-            bg-gray-200 hover:bg-gray-300 
-            dark:bg-gray-800/80 dark:hover:bg-gray-700 
-            transition-colors"
-        >
-          <CloseIcon className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+    <div className="fixed inset-0 bg-light-bg dark:bg-dark-bg text-gray-900 dark:text-white z-50 p-6 flex flex-col animate-fade-in overflow-y-auto">
+      <div className="flex items-center justify-between mb-8">
+        <button onClick={onClose} className="p-2 -ml-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Close menu">
+          <CloseIcon className="w-8 h-8 text-gray-800 dark:text-gray-200" />
         </button>
-
-        <div onClick={() => handleNavigate('home')} className="flex items-center space-x-2 cursor-pointer">
-          <span className="text-lg font-medium">QuickClips</span>
+        <div onClick={() => handleNavigate('home')} className="flex items-center space-x-2 cursor-pointer md:hidden">
+             {/* Logo hidden here as per request, but kept functionality if needed, sticking to text-only for mobile header if preferred */}
+             <span className="text-xl font-bold tracking-tighter text-gray-900 dark:text-gray-100">QuickClips</span>
         </div>
-        <button onClick={onSearchClick} className="p-3 rounded-full bg-gray-200 hover:bg-gray-300
-             dark:bg-gray-800/80 dark:hover:bg-gray-700 transition-colors" aria-label="Search">
-          <SearchIcon className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+        <button onClick={onSearchClick} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Search">
+          <SearchIcon className="w-6 h-6 text-gray-800 dark:text-gray-200" />
         </button>
       </div>
-      <nav className="flex-grow flex flex-col space-y-6 px-2">
-        <NavItem onClick={() => handleNavigate('features')}>Features</NavItem>
-        <NavItem onClick={() => handleNavigate('solutions')}>Solutions</NavItem>
-        <NavItem onClick={() => handleNavigate('pricing')}>Pricing</NavItem>
-        <NavItem onClick={() => handleNavigate('resources')}>Resources</NavItem>
-        <hr className="border-gray-800 my-4" />
+      
+      <nav className="flex-grow flex flex-col space-y-2">
+        <MobileNavItem label="Home" onClick={() => handleNavigate('home')} />
+        <MobileNavItem 
+            label="Features" 
+            isOpen={expandedSection === 'features'} 
+            onToggle={() => toggle('features')}
+        >
+             <MobileSubItem onClick={() => handleNavigate('extractor')} icon={<ClipboardIcon className="w-5 h-5"/>}>Image Extractor</MobileSubItem>
+             <MobileSubItem onClick={() => handleNavigate('resources')} icon={<InvoiceIcon className="w-5 h-5"/>}>Doc Generator</MobileSubItem>
+             <MobileSubItem onClick={() => handleNavigate('qr-generator')} icon={<QrCodeIcon className="w-5 h-5"/>}>QR Code Generator</MobileSubItem>
+             <MobileSubItem onClick={() => handleNavigate('features')}>View All Features</MobileSubItem>
+        </MobileNavItem>
+
+        <MobileNavItem 
+            label="Solutions" 
+            isOpen={expandedSection === 'solutions'} 
+            onToggle={() => toggle('solutions')}
+        >
+             {['Finance', 'Legal', 'Healthcare', 'Logistics'].map(item => (
+                 <MobileSubItem key={item} onClick={() => handleNavigate('solutions')}>
+                    {item} Teams
+                 </MobileSubItem>
+             ))}
+        </MobileNavItem>
+        
+        <MobileNavItem label="Pricing" onClick={() => handleNavigate('pricing')} />
+        <MobileNavItem label="Resources" onClick={() => handleNavigate('resources')} />
+
+        <hr className="border-gray-200 dark:border-gray-800 my-6" />
         <ActionItem icon={<ExternalLinkIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />}>Build with QuickClips</ActionItem>
         <ActionItem icon={<SparkleIcon className="w-6 h-6 text-gray-600 dark:text-gray-400" />} onClick={() => handleNavigate('extractor')}>Launch App</ActionItem>
       </nav>
+      <div className="mt-8 border-t border-gray-200 dark:border-gray-800 pt-6">
+          <button 
+              onClick={onClose} 
+              className="flex items-center mx-auto justify-center py-2 px-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-semibold text-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              aria-label="Close menu"
+          >
+              <div className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 mr-3">
+                  <CloseIcon className="w-5 h-5 text-gray-800 dark:text-gray-200" />
+              </div>
+              <div className="mr-3"> Close </div>
+          </button>
+      </div>
     </div>
   );
 };
-
 
 interface HeaderProps {
   theme: 'light' | 'dark';
@@ -158,6 +228,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, navigate }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [hoveredNav, setHoveredNav] = useState<string | null>(null);
   const lastScrollY = useRef(0);
   
   const controlNavbar = useCallback(() => {
@@ -202,17 +273,96 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, navigate }) => {
                <button onClick={() => setIsMenuOpen(true)} className={`md:hidden ${iconButtonClasses}`} aria-label="Open menu">
                 <MenuIcon className="w-6 h-6" />
               </button>
+              {/* Logo and Text hidden on mobile (md:flex) */}
               <div onClick={() => navigate('home')} className="hidden md:flex items-center space-x-3 cursor-pointer">
                 <LogoIcon className="w-8 h-8 text-brand-blue" />
-                <span className="text-2xl font-bold tracking-tighter">QuickClips</span>
+                <span className="text-2xl font-bold tracking-tighter text-gray-900 dark:text-gray-100">QuickClips</span>
               </div>
             </div>
-            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
-              <button onClick={() => navigate('features')} className="hover:text-brand-blue transition-colors flex items-center">
-                <span>Features</span>
-                <ChevronDownIcon className="w-4 h-4 ml-1" />
-              </button>
-              <button onClick={() => navigate('solutions')} className="hover:text-brand-blue transition-colors">Solutions</button>
+            <nav className="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-800 dark:text-gray-200">
+              {/* Features Dropdown */}
+              <div 
+                className="relative group py-4"
+                onMouseEnter={() => setHoveredNav('features')}
+                onMouseLeave={() => setHoveredNav(null)}
+              >
+                <button 
+                  onClick={() => navigate('features')} 
+                  className={`hover:text-brand-blue transition-colors flex items-center ${hoveredNav === 'features' ? 'text-brand-blue' : ''}`}
+                >
+                  <span>Features</span>
+                  <ChevronDownIcon className={`w-4 h-4 ml-1 transition-transform duration-200 ${hoveredNav === 'features' ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {hoveredNav === 'features' && (
+                    <div className="absolute top-full -left-4 pt-2 w-72 animate-fade-in">
+                         <div className="bg-light-card dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl p-2 overflow-hidden">
+                            <button onClick={() => { navigate('extractor'); setHoveredNav(null); }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors flex items-start gap-3 group/item">
+                                <div className="bg-blue-50 dark:bg-blue-900/30 p-2 rounded-lg group-hover/item:bg-blue-100 dark:group-hover/item:bg-blue-900/50 transition-colors">
+                                    <ClipboardIcon className="w-5 h-5 text-brand-blue" />
+                                </div>
+                                <div>
+                                    <div className="font-semibold text-gray-900 dark:text-white text-sm">Image Extractor</div>
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Convert images to editable text</div>
+                                </div>
+                            </button>
+                            <button onClick={() => { navigate('resources'); setHoveredNav(null); }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors flex items-start gap-3 group/item">
+                                <div className="bg-purple-50 dark:bg-purple-900/30 p-2 rounded-lg group-hover/item:bg-purple-100 dark:group-hover/item:bg-purple-900/50 transition-colors">
+                                    <InvoiceIcon className="w-5 h-5 text-purple-500" />
+                                </div>
+                                <div>
+                                    <div className="font-semibold text-gray-900 dark:text-white text-sm">Doc Generator</div>
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Automate PDF creation</div>
+                                </div>
+                            </button>
+                            <button onClick={() => { navigate('qr-generator'); setHoveredNav(null); }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors flex items-start gap-3 group/item">
+                                <div className="bg-green-50 dark:bg-green-900/30 p-2 rounded-lg group-hover/item:bg-green-100 dark:group-hover/item:bg-green-900/50 transition-colors">
+                                    <QrCodeIcon className="w-5 h-5 text-green-500" />
+                                </div>
+                                <div>
+                                    <div className="font-semibold text-gray-900 dark:text-white text-sm">QR Code Generator</div>
+                                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Create QR codes for links</div>
+                                </div>
+                            </button>
+                            <hr className="border-gray-200 dark:border-gray-800 my-1 mx-2" />
+                             <button onClick={() => { navigate('features'); setHoveredNav(null); }} className="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors flex items-center gap-3">
+                                <div className="font-medium text-brand-blue text-sm pl-2">View all features &rarr;</div>
+                            </button>
+                        </div>
+                    </div>
+                )}
+              </div>
+
+              {/* Solutions Dropdown */}
+              <div 
+                className="relative group py-4"
+                onMouseEnter={() => setHoveredNav('solutions')}
+                onMouseLeave={() => setHoveredNav(null)}
+              >
+                 <button 
+                    onClick={() => navigate('solutions')} 
+                    className={`hover:text-brand-blue transition-colors flex items-center ${hoveredNav === 'solutions' ? 'text-brand-blue' : ''}`}
+                 >
+                    <span>Solutions</span>
+                    <ChevronDownIcon className={`w-4 h-4 ml-1 transition-transform duration-200 ${hoveredNav === 'solutions' ? 'rotate-180' : ''}`} />
+                </button>
+                {hoveredNav === 'solutions' && (
+                    <div className="absolute top-full -left-4 pt-2 w-64 animate-fade-in">
+                         <div className="bg-light-card dark:bg-zinc-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-xl p-2 overflow-hidden">
+                            {['Finance', 'Legal', 'Healthcare', 'Logistics'].map((item) => (
+                                <button 
+                                    key={item}
+                                    onClick={() => { navigate('solutions'); setHoveredNav(null); }} 
+                                    className="w-full text-left px-4 py-2.5 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+                                >
+                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{item} Teams</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+              </div>
+
               <button onClick={() => navigate('pricing')} className="hover:text-brand-blue transition-colors">Pricing</button>
               <button onClick={() => navigate('resources')} className="hover:text-brand-blue transition-colors">Resources</button>
             </nav>
