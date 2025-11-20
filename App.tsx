@@ -54,9 +54,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans min-h-screen transition-colors duration-300 overflow-x-hidden">
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_0%,rgba(74,128,255,0.1)_0%,transparent_40%),radial-gradient(circle_at_100%_100%,rgba(74,128,255,0.1)_0%,transparent_40%),radial-gradient(circle_at_0%_100%,rgba(100,80,255,0.1)_0%,transparent_40%)]"></div>
-      <div className="relative z-10 flex flex-col min-h-screen">
+    <div className="bg-light-bg dark:bg-dark-bg text-gray-800 dark:text-gray-200 font-sans min-h-screen transition-colors duration-300 overflow-x-hidden **bg-fixed**" 
+     style={{
+        backgroundImage: `radial-gradient(circle at 50% 0%, rgba(74,128,255,0.1) 0%, transparent 40%), radial-gradient(circle at 100% 100%, rgba(74,128,255,0.1) 0%, transparent 40%), radial-gradient(circle at 0% 100%, rgba(100,80,255,0.1) 0%, transparent 40%)`
+     }}><div className="relative z-10 flex flex-col min-h-screen">
         <Header theme={theme} toggleTheme={toggleTheme} navigate={navigate} />
         <div className="flex-grow">
           {renderPage()}

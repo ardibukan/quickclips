@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { MenuIcon, SearchIcon, ChevronDownIcon, SunIcon, MoonIcon, CloseIcon, SparkleIcon, ExternalLinkIcon, LogoIcon, ClipboardIcon, InvoiceIcon, QrCodeIcon } from './Icons';
 import { Page } from '../App';
+import { Paperclip } from 'lucide-react';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -161,7 +162,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ onClose, onSearchClick, navigat
           <CloseIcon className="w-8 h-8 text-gray-800 dark:text-gray-200" />
         </button>
         <div onClick={() => handleNavigate('home')} className="flex items-center space-x-2 cursor-pointer md:hidden">
-             {/* Logo hidden here as per request, but kept functionality if needed, sticking to text-only for mobile header if preferred */}
              <span className="text-xl font-bold tracking-tighter text-gray-900 dark:text-gray-100">QuickClips</span>
         </div>
         <button onClick={onSearchClick} className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" aria-label="Search">
@@ -275,7 +275,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme, navigate }) => {
               </button>
               {/* Logo and Text hidden on mobile (md:flex) */}
               <div onClick={() => navigate('home')} className="hidden md:flex items-center space-x-3 cursor-pointer">
-                <LogoIcon className="w-8 h-8 text-brand-blue" />
+                <LogoIcon className="w-8 h-8" />
                 <span className="text-2xl font-bold tracking-tighter text-gray-900 dark:text-gray-100">QuickClips</span>
               </div>
             </div>

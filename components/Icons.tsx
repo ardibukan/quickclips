@@ -5,11 +5,29 @@ interface IconProps {
 }
 
 export const LogoIcon: React.FC<IconProps> = ({ className }) => (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <g transform="translate(15, 3) scale(0.35)">
-            <path d="M12 16L10.5 13L8 12L10.5 11L12 8L13.5 11L16 12L13.5 13L12 16Z" fill="currentColor" />
-        </g>
+    <svg 
+        className={className} 
+        viewBox="0 0 24 24"
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <defs>
+            <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style={{ stopColor: 'rgb(56, 189, 248)', stopOpacity: 1 }} /> 
+                <stop offset="100%" style={{ stopColor: 'rgb(236, 72, 153)', stopOpacity: 1 }} />
+            </linearGradient>
+        </defs>
+        
+        <path 
+            d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" 
+            stroke="url(#icon-gradient)" 
+            strokeWidth="2"
+            fill="none"
+        />
+
     </svg>
 );
 

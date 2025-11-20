@@ -16,7 +16,7 @@ const testimonialItems = [
     title: 'Lead Developer, Tech Solutions'
   },
   {
-    logo: <CompanyLogo3 className="h-10 w-10 text-gray-400" />,
+    logo: <CompanyLogo1 className="h-10 w-10 text-gray-400" />,
     quote: "As a startup, efficiency is key. QuickClips allows our small team to process a high volume of invoices and receipts, letting us focus on growing our business.",
     name: 'Emily Rodriguez',
     title: 'Founder, NextGen Startups'
@@ -34,7 +34,7 @@ const TestimonialCarousel: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState(0);
 
     const nextSlide = useCallback(() => {
-        setActiveIndex((prevIndex) => (prevIndex + 1) % testimonialItems.length);
+        setActiveIndex((prevIndex) => prevIndex === 0 ? testimonialItems.length - 1 : prevIndex - 1);
     }, []);
 
     useEffect(() => {
