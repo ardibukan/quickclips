@@ -87,7 +87,7 @@ const QrGeneratorPage: React.FC = () => {
 
             {/* Preview Section */}
             <div className="flex flex-col items-center justify-center">
-                <div className={`relative bg-white p-4 rounded-3xl shadow-2xl transition-all duration-500 ${qrData ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-4 grayscale'}`}>
+                <div className={`relative bg-white dark:bg-dark-card p-4 rounded-3xl shadow-2xl transition-all duration-500 ${qrData ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-4 grayscale'}`}>
                      {/* Background glow */}
                      {qrData && <div className="absolute -inset-1 bg-gradient-to-r from-brand-blue to-purple-600 rounded-3xl blur opacity-30"></div>}
                      
